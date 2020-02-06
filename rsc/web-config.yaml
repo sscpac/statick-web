@@ -1,0 +1,17 @@
+levels:
+  web:
+    tool:
+      eslint:
+        flags: ""
+      htmllint:
+        flags: ""
+      jshint:
+        flags: ""
+      stylelint:
+        flags: ""
+
+  web_with_pylint:
+    inherits_from: "web"
+    tool:
+      pylint:
+        flags: "--good-names=f,i,j,k,x,y,z,ex,_"

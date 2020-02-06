@@ -1,0 +1,9 @@
+eslint@5.16.0
+eslint-plugin-html
+eslint-plugin-prettier
+eslint-config-prettier
+htmllint-cli
+jshint
+prettier
+stylelint
+stylelint-config-standard
