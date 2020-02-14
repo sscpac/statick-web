@@ -15,13 +15,11 @@ EXTRAS = {
     'test': TEST_DEPS,
 }
 
-VERSION = '0.0.1'
-
 setup(
     author='NIWC Pacific',
     name='statick-web',
     description='Statick analysis plugins for Web (css, html, js) files.',
-    version=VERSION,
+    version='0.0.1',
     packages=['statick_tool',
               'statick_tool.plugins.discovery',
               'statick_tool.plugins.tool'],
@@ -36,7 +34,7 @@ setup(
     install_requires=['statick'],
     tests_require=TEST_DEPS,
     extras_require=EXTRAS,
-    url='https://github.com/sscpac/statick',
+    url='https://github.com/sscpac/statick-web',
     classifiers=[
         "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
         "Programming Language :: Python :: 3.5",
