@@ -1,5 +1,12 @@
 levels:
   web:
+    discovery:
+      css:
+        flags: ""
+      html:
+        flags: ""
+      javascript:
+        flags: ""
     tool:
       eslint:
         flags: ""
@@ -12,6 +19,8 @@ levels:
 
   web_with_pylint:
     inherits_from: "web"
+      python:
+        flags: ""
     tool:
       pylint:
         flags: "--good-names=f,i,j,k,x,y,z,ex,_"
