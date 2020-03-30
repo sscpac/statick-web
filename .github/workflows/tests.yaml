@@ -79,10 +79,6 @@ jobs:
         with:
           fail_ci_if_error: true
 
-      - name: Mypy
-        run: |
-          mypy --ignore-missing-imports src/
-
       - name: Statick markdown
         if: matrix.os == 'ubuntu-18.04'
         run: |
