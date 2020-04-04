@@ -1,7 +1,13 @@
 # Statick Web Plugins
 
 ![Unit Tests](https://github.com/sscpac/statick-web/workflows/Unit%20Tests/badge.svg)
+[![PyPI version](https://badge.fury.io/py/statick-web.svg)](https://badge.fury.io/py/statick-web)
 [![Codecov](https://codecov.io/gh/xydesa/statick-web/branch/master/graph/badge.svg)](https://codecov.io/gh/xydesa/statick-web)
+![Python Versions](https://img.shields.io/pypi/pyversions/statick-web.svg)
+![License](https://img.shields.io/pypi/l/statick-web.svg)
+![Daily Downloads](https://img.shields.io/pypi/dd/statick-web.svg)
+![Weekly Downloads](https://img.shields.io/pypi/dw/statick-web.svg)
+![Monthly Downloads](https://img.shields.io/pypi/dm/statick-web.svg)
 
 This is a set of plugins for [Statick](https://github.com/sscpac/statick) that will discover Web (HTML, CSS, JavaScript)
 files and perform static analysis on those files.
