@@ -1,6 +1,7 @@
 # Statick Web Plugins
 
 ![Unit Tests](https://github.com/sscpac/statick-web/workflows/Unit%20Tests/badge.svg)
+![Black](https://github.com/sscpac/statick-web/workflows/Black%20Formatting/badge.svg)
 [![Codecov](https://codecov.io/gh/xydesa/statick-web/branch/master/graph/badge.svg)](https://codecov.io/gh/xydesa/statick-web)
 
 This is a set of plugins for [Statick](https://github.com/sscpac/statick) that will discover Web (HTML, CSS, JavaScript) 
