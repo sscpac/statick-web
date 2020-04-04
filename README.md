@@ -1,8 +1,7 @@
 # Statick Web Plugins
 
-| Service | Status |
-| ------- | ------ |
-| Build   | [![Travis-CI](https://api.travis-ci.org/sscpac/statick-web.svg?branch=master)](https://travis-ci.org/sscpac/statick-web/branches) |
+![Unit Tests](https://github.com/sscpac/statick-web/workflows/Unit%20Tests/badge.svg)
+[![Codecov](https://codecov.io/gh/xydesa/statick-web/branch/master/graph/badge.svg)](https://codecov.io/gh/xydesa/statick-web)
 
 This is a set of plugins for [Statick](https://github.com/sscpac/statick) that will discover Web (HTML, CSS, JavaScript)
 files and perform static analysis on those files.
