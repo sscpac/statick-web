@@ -45,10 +45,8 @@ class HTMLLintToolPlugin(ToolPlugin):
                 total_output.append(output)
 
             except subprocess.CalledProcessError as ex:
-                if ex.returncode not in [
-                    1,
-                    2,
-                ]:  # tool returns 1 upon warnings and 2 upon errors
+                # tool returns 1 upon warnings and 2 upon errors
+                if ex.returncode not in [1, 2]:
                     print(
                         "{} failed! Returncode = {}".format(
                             tool_bin, str(ex.returncode)
