@@ -1,6 +1,7 @@
 # Statick Web Plugins
 
 ![Unit Tests](https://github.com/sscpac/statick-web/workflows/Unit%20Tests/badge.svg)
+![Black](https://github.com/sscpac/statick-web/workflows/Black%20Formatting/badge.svg)
 [![PyPI version](https://badge.fury.io/py/statick-web.svg)](https://badge.fury.io/py/statick-web)
 [![Codecov](https://codecov.io/gh/sscpac/statick-web/branch/master/graph/badge.svg)](https://codecov.io/gh/sscpac/statick-web)
 ![Python Versions](https://img.shields.io/pypi/pyversions/statick-web.svg)
@@ -97,3 +98,11 @@ future regressions) if you can add a small unit test which replicates the bug.
 
 Before submitting a change, please run tox to check that you have not
 introduced any regressions or violated any code style guidelines.
+
+### Formatting
+
+Statick code is formatted using [black](https://github.com/psf/black).
+To fix locally use
+
+    pip install black
+    black src tests
