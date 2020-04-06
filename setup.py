@@ -19,7 +19,7 @@ setup(
     author='NIWC Pacific',
     name='statick-web',
     description='Statick analysis plugins for Web (css, html, js) files.',
-    version='0.0.1',
+    version='0.0.2',
     packages=['statick_tool',
               'statick_tool.plugins.discovery',
               'statick_tool.plugins.tool'],
