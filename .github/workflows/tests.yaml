@@ -70,6 +70,7 @@ jobs:
           sudo n stable
           sudo npm install -g markdownlint-cli@0.21.0
           cat npm-deps.txt | xargs sudo npm install -g
+          rm nodesource_setup.sh
 
       - name: Tox
         run: |
