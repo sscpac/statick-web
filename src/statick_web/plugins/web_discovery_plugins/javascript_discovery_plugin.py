@@ -21,7 +21,9 @@ class JavaScriptDiscoveryPlugin(DiscoveryPlugin):
         self.find_files(package)
 
         for file_dict in package.files.values():
-            if file_dict["name"].endswith(".js") and not file_dict["name"].endswith(".min.js"):
+            if file_dict["name"].endswith(".js") and not file_dict["name"].endswith(
+                ".min.js"
+            ):
                 src_files.append(file_dict["path"])
 
         src_files = list(OrderedDict.fromkeys(src_files))

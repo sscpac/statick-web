@@ -20,7 +20,9 @@ class CSSDiscoveryPlugin(DiscoveryPlugin):
         self.find_files(package)
 
         for file_dict in package.files.values():
-            if file_dict["name"].endswith(".css") and not file_dict["name"].endswith(".min.css"):
+            if file_dict["name"].endswith(".css") and not file_dict["name"].endswith(
+                ".min.css"
+            ):
                 src_files.append(file_dict["path"])
 
         src_files = list(OrderedDict.fromkeys(src_files))
