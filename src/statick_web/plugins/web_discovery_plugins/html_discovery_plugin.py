@@ -2,8 +2,6 @@
 
 from __future__ import print_function
 
-import os
-import subprocess
 from collections import OrderedDict
 
 from statick_tool.discovery_plugin import DiscoveryPlugin
