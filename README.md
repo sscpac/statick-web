@@ -29,7 +29,7 @@ Custom exceptions can be applied the same way they are with
 The recommended method to install these Statick plugins is via pip:
 
 ```shell
-pip install statick-web
+python3 -m pip install statick-web
 ```
 
 You can also clone the repository and use it locally.
@@ -55,7 +55,7 @@ In that case your directory structure will look like the following:
 To run with the default configuration for the statick-web tools use:
 
 ```shell
-statick web-project/ statick-output/ --profile web-profile.yaml
+statick web-project/ --output-directory statick-output/ --profile web-profile.yaml
 ```
 
 ### Pip Install and Custom Configuration
@@ -75,7 +75,7 @@ This example will have custom exceptions in the web-project, such that the direc
 For this setup you will run the following:
 
 ```shell
-statick web-project/ statick-output/ --user-paths web-project/statick-config/ --profile web-profile.yaml
+statick web-project/ --output-directory statick-output/ --user-paths web-project/statick-config/ --profile web-profile.yaml
 ```
 
 ### Source Install and Custom Configuration
@@ -96,7 +96,7 @@ Using the example where we want to override the default exceptions with
 custom ones in the web-project, the command to run would be:
 
 ```shell
-./statick/statick web-project/ statick-output/ --user-paths statick-web/,web-project/statick-config/ --profile web-profile.yaml
+./statick/statick web-project/ --output-directory statick-output/ --user-paths statick-web/,web-project/statick-config/ --profile web-profile.yaml
 ```
 
 ## Tests and Contributing
@@ -119,7 +119,7 @@ types of reports that can be viewed with a text editor or web browser.
 ```shell
 python3 -m pip install mypy
 mkdir report
-mypy --ignore-missing-imports --allow-untyped-decorators --strict --html-report report/ --txt-report report src
+mypy --ignore-missing-imports --strict --html-report report/ --txt-report report src
 ```
 
 It is hoped that in the future we will generate coverage reports from mypy and use those to check for regressions.
@@ -130,6 +130,6 @@ Statick code is formatted using [black](https://github.com/psf/black).
 To fix locally use
 
 ```shell
-pip install black
+python3 -m pip install black
 black src tests
 ```
