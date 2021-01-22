@@ -100,18 +100,14 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
 
                     count += 1
 
-                    filename = match.group(1)
-                    line_number = match.group(2)
-                    issue_type = match.group(6)
-                    message = match.group(4)
                     issues.append(
                         Issue(
-                            filename,
-                            line_number,
+                            match.group(1),
+                            match.group(2),
                             self.get_name(),
-                            issue_type,
+                            match.group(6),
                             severity,
-                            message,
+                            match.group(4),
                             None,
                         )
                     )
