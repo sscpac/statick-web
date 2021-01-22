@@ -87,6 +87,10 @@ jobs:
           --exclude tests/.*/*valid_package/*
           src tests
 
+      - name: Mypy
+        run: |
+          mypy --ignore-missing-imports --allow-untyped-decorators --strict src/
+
       - name: Tox
         run: |
           python -m tox
