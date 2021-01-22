@@ -5,6 +5,7 @@
 [![Codecov](https://codecov.io/gh/sscpac/statick-web/branch/master/graph/badge.svg)](https://codecov.io/gh/sscpac/statick-web)
 ![Python Versions](https://img.shields.io/pypi/pyversions/statick-web.svg)
 ![License](https://img.shields.io/pypi/l/statick-web.svg)
+[![Checked with mypy](http://www.mypy-lang.org/static/mypy_badge.svg)](http://mypy-lang.org/)
 ![Daily Downloads](https://img.shields.io/pypi/dd/statick-web.svg)
 ![Weekly Downloads](https://img.shields.io/pypi/dw/statick-web.svg)
 ![Monthly Downloads](https://img.shields.io/pypi/dm/statick-web.svg)
@@ -27,7 +28,9 @@ Custom exceptions can be applied the same way they are with
 
 The recommended method to install these Statick plugins is via pip:
 
-    pip install statick-web
+```shell
+python3 -m pip install statick-web
+```
 
 You can also clone the repository and use it locally.
 
@@ -35,8 +38,10 @@ You can also clone the repository and use it locally.
 
 Make sure you install all the dependencies from apt/npm:
 
-    cat install.txt | xargs sudo apt-get install -y
-    cat npm-deps.txt | xargs sudo npm install -g
+```shell
+cat install.txt | xargs sudo apt-get install -y
+cat npm-deps.txt | xargs sudo npm install -g
+```
 
 ### Pip Install
 
@@ -49,7 +54,9 @@ In that case your directory structure will look like the following:
 
 To run with the default configuration for the statick-web tools use:
 
-    statick web-project/ statick-output/ --profile web-profile.yaml
+```shell
+statick web-project/ --output-directory statick-output/ --profile web-profile.yaml
+```
 
 ### Pip Install and Custom Configuration
 
@@ -67,7 +74,9 @@ This example will have custom exceptions in the web-project, such that the direc
 
 For this setup you will run the following:
 
-    statick web-project/ statick-output/ --user-paths web-project/statick-config/ --profile web-profile.yaml
+```shell
+statick web-project/ --output-directory statick-output/ --user-paths web-project/statick-config/ --profile web-profile.yaml
+```
 
 ### Source Install and Custom Configuration
 
@@ -86,7 +95,9 @@ The directory structure will look like:
 Using the example where we want to override the default exceptions with
 custom ones in the web-project, the command to run would be:
 
-    ./statick/statick web-project/ statick-output/ --user-paths statick-web/,web-project/statick-config/ --profile web-profile.yaml
+```shell
+./statick/statick web-project/ --output-directory statick-output/ --user-paths statick-web/,web-project/statick-config/ --profile web-profile.yaml
+```
 
 ## Tests and Contributing
 
@@ -98,10 +109,27 @@ future regressions) if you can add a small unit test which replicates the bug.
 Before submitting a change, please run tox to check that you have not
 introduced any regressions or violated any code style guidelines.
 
+### Mypy
+
+Statick Web uses [mypy](http://mypy-lang.org/) to check that type hints are being followed properly.
+Type hints are described in [PEP 484](https://www.python.org/dev/peps/pep-0484/) and allow for static typing in Python.
+To determine if proper types are being used in Statick Web the following command will show any errors, and create several
+types of reports that can be viewed with a text editor or web browser.
+
+```shell
+python3 -m pip install mypy
+mkdir report
+mypy --ignore-missing-imports --strict --html-report report/ --txt-report report src
+```
+
+It is hoped that in the future we will generate coverage reports from mypy and use those to check for regressions.
+
 ### Formatting
 
 Statick code is formatted using [black](https://github.com/psf/black).
 To fix locally use
 
-    pip install black
-    black src tests
+```shell
+python3 -m pip install black
+black src tests
+```
