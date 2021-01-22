@@ -51,7 +51,6 @@ class JSHintToolPlugin(ToolPlugin):  # type: ignore
                 output = subprocess.check_output(
                     exe, stderr=subprocess.STDOUT, universal_newlines=True
                 )
-                total_output.append(output)
 
             except subprocess.CalledProcessError as ex:
                 if ex.returncode == 2:  # jshint returns 2 upon linting errors
