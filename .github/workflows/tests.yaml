@@ -68,7 +68,7 @@ jobs:
           sudo apt install nodejs
           sudo npm install -g n
           sudo n stable
-          sudo npm install -g markdownlint-cli@0.21.0
+          sudo npm install -g markdownlint-cli
           cat npm-deps.txt | xargs sudo npm install -g
           rm nodesource_setup.sh
 
