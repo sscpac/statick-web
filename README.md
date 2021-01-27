@@ -40,7 +40,7 @@ Make sure you install all the dependencies from apt/npm:
 
 ```shell
 cat install.txt | xargs sudo apt-get install -y
-cat npm-deps.txt | xargs sudo npm install -g
+cat npm-deps.txt | xargs npm install
 ```
 
 ### Pip Install
