@@ -69,7 +69,8 @@ jobs:
           sudo npm install -g n
           sudo n stable
           sudo npm install -g markdownlint-cli
-          cat npm-deps.txt | xargs sudo npm install -g
+          mkdir -p ../node_modules
+          cat npm-deps.txt | xargs npm install --prefix ../
           rm nodesource_setup.sh
 
       # Black is only available on Python 3.6+, but we still want to test Python 3.5 since that is
