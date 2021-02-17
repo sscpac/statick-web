@@ -21,8 +21,7 @@ The current plugins will discover Web files in a project and can be configured t
 - [prettier](https://prettier.io/)
 - [stylelint](https://github.com/stylelint/stylelint)
 
-Custom exceptions can be applied the same way they are with
-[Statick exceptions](https://github.com/sscpac/statick/blob/master/GUIDE.md#exceptionsyaml).
+Custom exceptions can be applied the same way they are with [Statick exceptions][Exceptions].
 
 ## Installation
 
@@ -36,12 +35,8 @@ You can also clone the repository and use it locally.
 
 ## Usage
 
-Make sure you install all the dependencies from apt/npm:
-
-```shell
-cat install.txt | xargs sudo apt-get install -y
-cat npm-deps.txt | xargs npm install
-```
+Make sure you install all the dependencies from apt/npm.
+See the [Actions][Actions] file to see exactly which commands work for various operating systems.
 
 ### Pip Install
 
@@ -111,8 +106,8 @@ introduced any regressions or violated any code style guidelines.
 
 ### Mypy
 
-Statick Web uses [mypy](http://mypy-lang.org/) to check that type hints are being followed properly.
-Type hints are described in [PEP 484](https://www.python.org/dev/peps/pep-0484/) and allow for static typing in Python.
+Statick Web uses [mypy][MyPy] to check that type hints are being followed properly.
+Type hints are described in [PEP 484][Pep484] and allow for static typing in Python.
 To determine if proper types are being used in Statick Web the following command will show any errors, and create several
 types of reports that can be viewed with a text editor or web browser.
 
@@ -126,10 +121,16 @@ It is hoped that in the future we will generate coverage reports from mypy and u
 
 ### Formatting
 
-Statick code is formatted using [black](https://github.com/psf/black).
+Statick code is formatted using [black][Black].
 To fix locally use
 
 ```shell
 python3 -m pip install black
 black src tests
 ```
+
+[Actions]: .github/workflows/tests.yaml
+[Black]: https://github.com/psf/black
+[Exceptions]: https://github.com/sscpac/statick/blob/master/GUIDE.md#exceptionsyaml
+[MyPy]: http://mypy-lang.org/
+[Pep484]: https://www.python.org/dev/peps/pep-0484/
