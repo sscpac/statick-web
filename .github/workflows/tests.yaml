@@ -68,11 +68,11 @@ jobs:
           sudo apt install nodejs
           sudo npm install -g n
           sudo n stable
-          sudo npm config set prefix -g /usr
-          sudo npm install -g eslint
-          sudo npm install -g eslint-config-prettier
-          sudo npm install -g eslint-plugin-html
-          sudo npm install -g eslint-plugin-prettier
+          npm install --prefix $HOME/.node_modules eslint
+          npm install --prefix $HOME/.node_modules eslint-plugin-html
+          npm install --prefix $HOME/.node_modules eslint-plugin-prettier
+          npm install --prefix $HOME/.node_modules eslint-config-prettier
+          sudo npm config set prefix -g /usr/local
           sudo npm install -g htmllint-cli
           sudo npm install -g jshint
           sudo npm install -g markdownlint-cli

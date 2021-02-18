@@ -37,6 +37,7 @@ You can also clone the repository and use it locally.
 
 Make sure you install all the dependencies from apt/npm.
 See the [Actions][Actions] file to see exactly which commands work for various operating systems.
+Pay particular attention to which packages are installed locally and globally.
 
 ### Pip Install
 
