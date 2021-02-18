@@ -1,9 +1,0 @@
-eslint
-eslint-plugin-html
-eslint-plugin-prettier
-eslint-config-prettier
-htmllint-cli
-jshint
-prettier
-stylelint
-stylelint-config-standard
