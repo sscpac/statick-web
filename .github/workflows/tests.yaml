@@ -85,10 +85,10 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
           choco install nodejs
-          npm install -g eslint
-          npm install -g eslint-plugin-html
-          npm install -g eslint-plugin-prettier
-          npm install -g eslint-config-prettier
+          npm install eslint
+          npm install eslint-plugin-html
+          npm install eslint-plugin-prettier
+          npm install eslint-config-prettier
           npm install -g htmllint-cli
           npm install -g jshint
           npm install -g markdownlint-cli
@@ -100,10 +100,10 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: |
           brew install node
-          npm install -g eslint
-          npm install -g eslint-plugin-html
-          npm install -g eslint-plugin-prettier
-          npm install -g eslint-config-prettier
+          npm install eslint
+          npm install eslint-plugin-html
+          npm install eslint-plugin-prettier
+          npm install eslint-config-prettier
           npm install -g htmllint-cli
           npm install -g jshint
           npm install -g markdownlint-cli
