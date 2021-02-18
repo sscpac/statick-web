@@ -85,33 +85,31 @@ jobs:
         if: matrix.os == 'windows-latest'
         run: |
           choco install nodejs
-          npm install --prefix $HOME/.node_modules eslint
-          npm install --prefix $HOME/.node_modules eslint-plugin-html
-          npm install --prefix $HOME/.node_modules eslint-plugin-prettier
-          npm install --prefix $HOME/.node_modules eslint-config-prettier
-          sudo npm config set prefix -g /usr/local
-          sudo npm install -g htmllint-cli
-          sudo npm install -g jshint
-          sudo npm install -g markdownlint-cli
-          sudo npm install -g prettier
-          sudo npm install -g stylelint
-          sudo npm install -g stylelint-config-standard
+          npm install eslint
+          npm install eslint-plugin-html
+          npm install eslint-plugin-prettier
+          npm install eslint-config-prettier
+          npm install htmllint-cli
+          npm install jshint
+          npm install markdownlint-cli
+          npm install prettier
+          npm install stylelint
+          npm install stylelint-config-standard
 
       - name: Install tools (MacOS)
         if: matrix.os == 'macos-latest'
         run: |
           brew install node
-          npm install --prefix $HOME/.node_modules eslint
-          npm install --prefix $HOME/.node_modules eslint-plugin-html
-          npm install --prefix $HOME/.node_modules eslint-plugin-prettier
-          npm install --prefix $HOME/.node_modules eslint-config-prettier
-          sudo npm config set prefix -g /usr/local
-          sudo npm install -g htmllint-cli
-          sudo npm install -g jshint
-          sudo npm install -g markdownlint-cli
-          sudo npm install -g prettier
-          sudo npm install -g stylelint
-          sudo npm install -g stylelint-config-standard
+          npm install eslint
+          npm install eslint-plugin-html
+          npm install eslint-plugin-prettier
+          npm install eslint-config-prettier
+          npm install htmllint-cli
+          npm install jshint
+          npm install markdownlint-cli
+          npm install prettier
+          npm install stylelint
+          npm install stylelint-config-standard
 
       # Black is only available on Python 3.6+, but we still want to test Python 3.5 since that is
       # default on Ubuntu 16.04. When Python 3.5 support is dropped we can add black to requirements.txt
