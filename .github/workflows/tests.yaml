@@ -89,12 +89,12 @@ jobs:
           npm install eslint-plugin-html
           npm install eslint-plugin-prettier
           npm install eslint-config-prettier
-          npm install -g htmllint-cli
-          npm install -g jshint
-          npm install -g markdownlint-cli
-          npm install -g prettier
-          npm install -g stylelint
-          npm install -g stylelint-config-standard
+          npm install htmllint-cli
+          npm install jshint
+          npm install markdownlint-cli
+          npm install prettier
+          npm install stylelint
+          npm install stylelint-config-standard
 
       - name: Install tools (MacOS)
         if: matrix.os == 'macos-latest'
