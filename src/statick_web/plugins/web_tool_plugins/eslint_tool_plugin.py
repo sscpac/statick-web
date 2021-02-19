@@ -20,7 +20,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
     # pylint: disable=too-many-locals
     def scan(self, package: Package, level: str) -> Optional[List[Issue]]:
         """Run tool and gather output."""
-        tool_bin = "eslint"
+        tool_bin = ["npx", " eslint"]
 
         tool_config = ".eslintrc"
         user_config = self.plugin_context.config.get_tool_config(

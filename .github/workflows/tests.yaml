@@ -65,21 +65,21 @@ jobs:
           sudo apt install curl
           curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
           sudo bash nodesource_setup.sh
+          rm nodesource_setup.sh
           sudo apt install nodejs
           sudo npm install -g n
           sudo n stable
-          npm install --prefix $HOME/.node_modules eslint
-          npm install --prefix $HOME/.node_modules eslint-plugin-html
-          npm install --prefix $HOME/.node_modules eslint-plugin-prettier
-          npm install --prefix $HOME/.node_modules eslint-config-prettier
           sudo npm config set prefix -g /usr/local
+          sudo npm install -g eslint
+          sudo npm install -g eslint-plugin-html
+          sudo npm install -g eslint-plugin-prettier
+          sudo npm install -g eslint-config-prettier
           sudo npm install -g htmllint-cli
           sudo npm install -g jshint
           sudo npm install -g markdownlint-cli
           sudo npm install -g prettier
           sudo npm install -g stylelint
           sudo npm install -g stylelint-config-standard
-          rm nodesource_setup.sh
 
       - name: Install tools (Windows)
         if: matrix.os == 'windows-latest'
