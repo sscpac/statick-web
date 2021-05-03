@@ -19,11 +19,8 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         """Get name of tool."""
         return "eslint"
 
-    # pylint: disable=too-many-locals
-    def scan(self, package: Package, level: str) -> Optional[List[Issue]]:
-        """Run tool and gather output."""
-        tool_bin = "eslint"
-
+    def get_format_file(self, level: str):
+        """Retrieve format file path."""
         tool_config = ".eslintrc"
         user_config = self.plugin_context.config.get_tool_config(
             self.get_name(), level, "config"
@@ -36,21 +33,28 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         )
         copied_file = False
         if install_dir is not None:
-            format_file_path = pathlib.Path(install_dir, tool_config)
-            format_file_path = format_file_path.expanduser()
+            format_file_path = pathlib.Path(install_dir, tool_config).expanduser()
 
             if not format_file_path.exists():
                 config_file_path = pathlib.Path(
                     self.plugin_context.resources.get_file(tool_config)
                 )
-                install_dir_path = pathlib.Path(install_dir)
-                install_dir_path = install_dir_path.expanduser()
+                install_dir_path = pathlib.Path(install_dir).expanduser()
                 shutil.copy(str(config_file_path), str(install_dir_path))
                 copied_file = True
 
             format_file_name = str(format_file_path.resolve())
         else:
             format_file_name = self.plugin_context.resources.get_file(tool_config)
+
+        return (format_file_name, copied_file)
+
+    # pylint: disable=too-many-locals
+    def scan(self, package: Package, level: str) -> Optional[List[Issue]]:
+        """Run tool and gather output."""
+        tool_bin = "eslint"
+
+        (format_file_name, copied_file) = self.get_format_file(level)
 
         flags = []  # type: List[str]
         if format_file_name is not None:
@@ -84,17 +88,17 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
                     )
                     logging.warning("%s exception: %s", self.get_name(), ex.output)
                     if copied_file:
-                        self.remove_config_file(install_dir, tool_config)
+                        self.remove_config_file(format_file_name)
                     return None
 
             except OSError as ex:
                 logging.warning("Couldn't find %s! (%s)", tool_bin, ex)
                 if copied_file:
-                    self.remove_config_file(install_dir, tool_config)
+                    self.remove_config_file(format_file_name)
                 return None
 
         if copied_file:
-            self.remove_config_file(install_dir, tool_config)
+            self.remove_config_file(format_file_name)
 
         for output in total_output:
             logging.debug("%s", output)
@@ -108,10 +112,10 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
 
     # pylint: enable=too-many-locals
 
-    def remove_config_file(self, install_dir, tool_config):
+    @classmethod
+    def remove_config_file(cls, format_file_name: str) -> None:
         """Remove config file automatically copied into directory."""
-        format_file_path = pathlib.Path(install_dir, tool_config)
-        format_file_path = format_file_path.expanduser()
+        format_file_path = pathlib.Path(format_file_name).expanduser()
         if format_file_path.exists():
             format_file_path.unlink()
 
@@ -125,7 +129,6 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
 
         for output in total_output:
             lines = output.split("\n")
-            count = 0
             for line in lines:
                 match = parse.match(line)  # type: Optional[Match[str]]
                 err_match = err_parse.match(line)  # type: Optional[Match[str]]
@@ -136,8 +139,6 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
                         severity = 3
                     elif severity_str == "error":
                         severity = 5
-
-                    count += 1
 
                     issues.append(
                         Issue(
@@ -155,8 +156,6 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
                     severity = 3
                     if severity_str == "error":
                         severity = 5
-
-                    count += 1
 
                     issues.append(
                         Issue(
