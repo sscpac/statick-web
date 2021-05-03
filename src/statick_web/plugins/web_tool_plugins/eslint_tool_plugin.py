@@ -40,7 +40,9 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
             format_file_path = format_file_path.expanduser()
 
             if not format_file_path.exists():
-                config_file_path = pathlib.Path(self.plugin_context.resources.get_file(tool_config))
+                config_file_path = pathlib.Path(
+                    self.plugin_context.resources.get_file(tool_config)
+                )
                 install_dir_path = pathlib.Path(install_dir)
                 install_dir_path = install_dir_path.expanduser()
                 shutil.copy(str(config_file_path), str(install_dir_path))
