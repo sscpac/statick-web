@@ -43,7 +43,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
                 shutil.copy(str(config_file_path), str(install_dir_path))
                 copied_file = True
 
-            format_file_name = str(format_file_path.resolve())
+            format_file_name = str(format_file_path)
         else:
             format_file_name = self.plugin_context.resources.get_file(tool_config)
 
