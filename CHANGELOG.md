@@ -12,6 +12,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Removed
 
+## v0.0.5 - 2021-05-03
+
+### Added
+
+- Add support for locally installed eslint configs and plugins.
+  Adding `install_dir` config option to specify where eslint's plugins and configs are installed.
+  On Ubuntu, locally installed eslint configs and plugins are required for eslint versions >= 6.0.0:
+  https://eslint.org/docs/user-guide/migrating-to-6.0.0#plugins-and-shareable-configs-are-no-longer-affected-by-eslints-location
+- Add support for parsing eslint error lines.
+
 ## v0.0.4 - 2021-01-19
 
 ### Changed
