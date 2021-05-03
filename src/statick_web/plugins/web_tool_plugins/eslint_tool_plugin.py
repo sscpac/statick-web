@@ -1,7 +1,9 @@
 """Apply eslint tool and gather results."""
 
 import logging
+import pathlib
 import re
+import shutil
 import subprocess
 from typing import List, Match, Optional, Pattern
 
@@ -29,7 +31,25 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         if user_config is not None:
             tool_config = user_config
 
-        format_file_name = self.plugin_context.resources.get_file(tool_config)
+        install_dir = self.plugin_context.config.get_tool_config(
+            self.get_name(), level, "install_dir"
+        )
+        copied_file = False
+        if install_dir is not None:
+            format_file_path = pathlib.Path(install_dir, tool_config)
+            format_file_path = format_file_path.expanduser()
+
+            if not format_file_path.exists():
+                config_file_path = pathlib.Path(self.plugin_context.resources.get_file(tool_config))
+                install_dir_path = pathlib.Path(install_dir)
+                install_dir_path = install_dir_path.expanduser()
+                shutil.copy(str(config_file_path), str(install_dir_path))
+                copied_file = True
+
+            format_file_name = str(format_file_path.resolve())
+        else:
+            format_file_name = self.plugin_context.resources.get_file(tool_config)
+
         flags = []  # type: List[str]
         if format_file_name is not None:
             flags += ["-c", format_file_name]
@@ -61,11 +81,18 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
                         "%s failed! Returncode = %d", tool_bin, ex.returncode
                     )
                     logging.warning("%s exception: %s", self.get_name(), ex.output)
+                    if copied_file:
+                        self.remove_config_file(install_dir, tool_config)
                     return None
 
             except OSError as ex:
                 logging.warning("Couldn't find %s! (%s)", tool_bin, ex)
+                if copied_file:
+                    self.remove_config_file(install_dir, tool_config)
                 return None
+
+        if copied_file:
+            self.remove_config_file(install_dir, tool_config)
 
         for output in total_output:
             logging.debug("%s", output)
@@ -79,10 +106,19 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
 
     # pylint: enable=too-many-locals
 
+    def remove_config_file(self, install_dir, tool_config):
+        """Remove config file automatically copied into directory."""
+        format_file_path = pathlib.Path(install_dir, tool_config)
+        format_file_path = format_file_path.expanduser()
+        if format_file_path.exists():
+            format_file_path.unlink()
+
     def parse_output(self, total_output: List[str]) -> List[Issue]:
         """Parse tool output and report issues."""
         eslint_re = r"(.+):(\d+):(\d+):\s(.+)\s\[(.+)\/(.+)\]"
+        eslint_error_re = r"(.+):(\d+):(\d+):\s(.+):\s(.+)\s\[(.+)]"
         parse = re.compile(eslint_re)  # type: Pattern[str]
+        err_parse = re.compile(eslint_error_re)  # type: Pattern[str]
         issues = []  # type: List[Issue]
 
         for output in total_output:
@@ -90,6 +126,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
             count = 0
             for line in lines:
                 match = parse.match(line)  # type: Optional[Match[str]]
+                err_match = err_parse.match(line)  # type: Optional[Match[str]]
                 if match:
                     severity_str = match.group(5).lower()
                     severity = 3
@@ -108,6 +145,25 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
                             match.group(6),
                             severity,
                             match.group(4),
+                            None,
+                        )
+                    )
+                elif err_match:
+                    severity_str = err_match.group(6).lower()
+                    severity = 3
+                    if severity_str == "error":
+                        severity = 5
+
+                    count += 1
+
+                    issues.append(
+                        Issue(
+                            err_match.group(1),
+                            err_match.group(2),
+                            self.get_name(),
+                            err_match.group(4),
+                            severity,
+                            err_match.group(5),
                             None,
                         )
                     )
