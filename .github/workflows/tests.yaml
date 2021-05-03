@@ -68,7 +68,9 @@ jobs:
           sudo apt install nodejs
           sudo npm install -g n
           sudo n stable
-          npm install --prefix $HOME/.node_modules eslint
+          sudo npm install -g eslint
+          # eslint plugins and configs should be installed locally
+          # https://eslint.org/docs/user-guide/migrating-to-6.0.0#plugins-and-shareable-configs-are-no-longer-affected-by-eslints-location
           npm install --prefix $HOME/.node_modules eslint-plugin-html
           npm install --prefix $HOME/.node_modules eslint-plugin-prettier
           npm install --prefix $HOME/.node_modules eslint-config-prettier
