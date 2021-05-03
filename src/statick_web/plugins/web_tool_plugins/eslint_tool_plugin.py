@@ -5,7 +5,7 @@ import pathlib
 import re
 import shutil
 import subprocess
-from typing import List, Match, Optional, Pattern
+from typing import List, Match, Optional, Pattern, Tuple
 
 from statick_tool.issue import Issue
 from statick_tool.package import Package
@@ -19,7 +19,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         """Get name of tool."""
         return "eslint"
 
-    def get_format_file(self, level: str):
+    def get_format_file(self, level: str) -> Tuple[str, bool]:
         """Retrieve format file path."""
         tool_config = ".eslintrc"
         user_config = self.plugin_context.config.get_tool_config(
@@ -100,12 +100,10 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         if copied_file:
             self.remove_config_file(format_file_name)
 
-        for output in total_output:
-            logging.debug("%s", output)
-
         with open(self.get_name() + ".log", "w") as fid:
             for output in total_output:
                 fid.write(output)
+                logging.debug("%s", output)
 
         issues = self.parse_output(total_output)  # type: List[Issue]
         return issues
