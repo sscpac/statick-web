@@ -27,8 +27,8 @@ setup(
     ],
     package_dir={
         "statick_tool": ".",
-        "statick_tool.plugins.discovery": "src/statick_web/plugins/web_discovery_plugins",
-        "statick_tool.plugins.tool": "src/statick_web/plugins/web_tool_plugins",
+        "statick_tool.plugins.discovery": "src/statick_web/plugins/discovery",
+        "statick_tool.plugins.tool": "src/statick_web/plugins/tool",
     },
     package_data={
         "statick_tool": ["rsc/.*", "rsc/*"],
