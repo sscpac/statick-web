@@ -78,6 +78,7 @@ jobs:
           sudo npm install -g htmllint-cli
           sudo npm install -g jshint
           sudo npm install -g markdownlint-cli
+          sudo npm install -g npm-groovy-lint
           sudo npm install -g prettier
           sudo npm install -g stylelint
           sudo npm install -g stylelint-config-standard
