@@ -44,9 +44,16 @@ def test_groovy_plugin_scan_valid():
     )
     discovery_plugin = GroovyDiscoveryPlugin()
     discovery_plugin.scan(package, "level")
-    expected_src = ["Jenkinsfile", "test.gradle", "test.groovy", os.path.join("ignore_this", "ignoreme.groovy")]
+    expected_src = [
+        "Jenkinsfile",
+        "test.gradle",
+        "test.groovy",
+        os.path.join("ignore_this", "ignoreme.groovy"),
+    ]
     # We have to add the path to each of the above...yuck
-    expected_fullpath = [os.path.join(package.path, filename) for filename in expected_src]
+    expected_fullpath = [
+        os.path.join(package.path, filename) for filename in expected_src
+    ]
     # Neat trick to verify that two unordered lists are the same
     assert set(package["groovy_src"]) == set(expected_fullpath)
 

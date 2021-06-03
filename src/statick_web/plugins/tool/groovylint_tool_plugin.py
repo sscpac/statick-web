@@ -77,6 +77,7 @@ class GroovyLintToolPlugin(ToolPlugin):  # type: ignore
         """Parse tool output and report issues."""
         issues: List[Issue] = []
 
+        # pylint: disable=too-many-nested-blocks
         for output in total_output:
             lines = output.split("\n")
             for line in lines:
@@ -110,4 +111,5 @@ class GroovyLintToolPlugin(ToolPlugin):  # type: ignore
 
                 except ValueError as ex:
                     logging.warning("ValueError: %s", ex)
+        # pylint: enable=too-many-nested-blocks
         return issues

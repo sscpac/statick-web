@@ -76,7 +76,7 @@ def test_groovylint_tool_plugin_scan_valid():
     package["groovy_src"] = [
         os.path.join(os.path.dirname(__file__), "valid_package", "Jenkinsfile"),
         os.path.join(os.path.dirname(__file__), "valid_package", "test.gradle"),
-        os.path.join(os.path.dirname(__file__), "valid_package", "test.groovy")
+        os.path.join(os.path.dirname(__file__), "valid_package", "test.groovy"),
     ]
     issues = plugin.scan(package, "level")
     assert not issues
@@ -110,7 +110,10 @@ def test_groovylint_tool_plugin_parse_valid():
     assert issues[0].tool == "groovylint"
     assert issues[0].issue_type == "UnnecessaryGString"
     assert issues[0].severity == 1
-    assert issues[0].message == "The String 'Hello World!' can be wrapped in single quotes instead of double quotes"
+    assert (
+        issues[0].message
+        == "The String 'Hello World!' can be wrapped in single quotes instead of double quotes"
+    )
 
 
 def test_groovylint_tool_plugin_parse_invalid():
