@@ -9,6 +9,14 @@ levels:
       eslint:
         flags: ""
 
+  groovylint:
+    discovery:
+      groovy:
+        flags: ""
+    tool:
+      groovylint:
+        flags: ""
+
   htmllint:
     discovery:
       html:
@@ -41,12 +49,16 @@ levels:
     discovery:
       css:
         flags: ""
+      groovy:
+        flags: ""
       html:
         flags: ""
       javascript:
         flags: ""
     tool:
       eslint:
+        flags: ""
+      groovylint:
         flags: ""
       htmllint:
         flags: ""
