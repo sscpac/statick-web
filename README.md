@@ -95,6 +95,30 @@ custom ones in the web-project, the command to run would be:
 ./statick/statick web-project/ --output-directory statick-output/ --user-paths statick-web/,web-project/statick-config/ --profile web-profile.yaml
 ```
 
+## Existing Plugins
+
+### Discovery Plugins
+
+Note that if a file exists without the extension listed it can still be discovered if the `file` command identifies it
+as a specific file type.
+This type of discovery must be supported by the discovery plugin and only works on operating systems where the `file`
+command exists.
+
+File Type | Extensions
+:-------- | :---------
+css        | `.css`
+html       | `.html`
+javascript | `.js`
+
+### Tool Plugins
+
+Tool | About
+:--- | :----
+[eslint][eslint]       | Find and fix problems in your JavaScript code.
+[htmllint][htmllint]   | An unofficial html5 linter and validator.
+[jshint][jshint]       | JSHint is a community-driven tool that detects errors and potential problems in JavaScript code.
+[stylelint][stylelint] | A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.
+
 ## Tests and Contributing
 
 If you write a new feature for Statick or are fixing a bug,
@@ -135,3 +159,7 @@ black src tests
 [Exceptions]: https://github.com/sscpac/statick/blob/master/GUIDE.md#exceptionsyaml
 [MyPy]: http://mypy-lang.org/
 [Pep484]: https://www.python.org/dev/peps/pep-0484/
+[eslint]: https://eslint.org/
+[htmllint]: https://github.com/htmllint/htmllint
+[jshint]: https://jshint.com/about/
+[stylelint]: https://stylelint.io/
