@@ -13,15 +13,18 @@
 This is a set of plugins for [Statick](https://github.com/sscpac/statick) that will discover Web (HTML, CSS, JavaScript)
 files and perform static analysis on those files.
 
-The current plugins will discover Web files in a project and can be configured to check those files using
-
-- [eslint](https://eslint.org/)
-- [htmllint](https://github.com/htmllint/htmllint)
-- [jshint](https://jshint.com/)
-- [prettier](https://prettier.io/)
-- [stylelint](https://github.com/stylelint/stylelint)
-
 Custom exceptions can be applied the same way they are with [Statick exceptions][Exceptions].
+
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+* [Existing Plugins](#existing-plugins)
+  * [Discovery Plugins](#discovery-plugins)
+  * [Tool Plugins](#tool-plugins)
+* [Contributing](#contributing)
+  * [Mypy](#mypy)
+  * [Formatting](#formatting)
 
 ## Installation
 
@@ -44,9 +47,11 @@ Pay particular attention to which packages are installed locally and globally.
 The most common usage is to use statick and statick-web from pip.
 In that case your directory structure will look like the following:
 
-- doc
-  - web-project
-  - statick-output
+```shell
+project-root
+ |- web-project
+ |- statick-config
+```
 
 To run with the default configuration for the statick-web tools use:
 
@@ -61,12 +66,14 @@ This is usually done to run a different set of tools than are called out in the 
 For this case you will have to add the new Statick configuration somewhere.
 This example will have custom exceptions in the web-project, such that the directory structure is:
 
-- doc
-  - web-project
-    - statick-config
-      - rsc
-        - exceptions.yaml
-  - statick-output
+```shell
+project-root
+ |- web-project
+ |- statick-config
+     |- rsc
+         |- exceptions.yaml
+ |- statick-output
+```
 
 For this setup you will run the following:
 
@@ -79,14 +86,16 @@ statick web-project/ --output-directory statick-output/ --user-paths web-project
 The last type of setup will be to have all of the tools available from cloning repositories, not installing from pip.
 The directory structure will look like:
 
-- doc
-  - web-project
-    - statick-config
-      - rsc
-        - exceptions.yaml
-  - statick-output
-  - statick
-  - statick-web
+```shell
+project-root
+ |- web-project
+ |- statick-config
+     |- rsc
+         |- exceptions.yaml
+ |- statick-output
+ |- statick
+ |- statick-web
+```
 
 Using the example where we want to override the default exceptions with
 custom ones in the web-project, the command to run would be:
@@ -95,7 +104,31 @@ custom ones in the web-project, the command to run would be:
 ./statick/statick web-project/ --output-directory statick-output/ --user-paths statick-web/,web-project/statick-config/ --profile web-profile.yaml
 ```
 
-## Tests and Contributing
+## Existing Plugins
+
+### Discovery Plugins
+
+Note that if a file exists without the extension listed it can still be discovered if the `file` command identifies it
+as a specific file type.
+This type of discovery must be supported by the discovery plugin and only works on operating systems where the `file`
+command exists.
+
+File Type | Extensions
+:-------- | :---------
+css        | `.css`
+html       | `.html`
+javascript | `.js`
+
+### Tool Plugins
+
+Tool | About
+:--- | :----
+[eslint][eslint]       | Find and fix problems in your JavaScript code.
+[htmllint][htmllint]   | An unofficial html5 linter and validator.
+[jshint][jshint]       | JSHint is a community-driven tool that detects errors and potential problems in JavaScript code.
+[stylelint][stylelint] | A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.
+
+## Contributing
 
 If you write a new feature for Statick or are fixing a bug,
 you are strongly encouraged to add unit tests for your contribution.
@@ -135,3 +168,7 @@ black src tests
 [Exceptions]: https://github.com/sscpac/statick/blob/master/GUIDE.md#exceptionsyaml
 [MyPy]: http://mypy-lang.org/
 [Pep484]: https://www.python.org/dev/peps/pep-0484/
+[eslint]: https://eslint.org/
+[htmllint]: https://github.com/htmllint/htmllint
+[jshint]: https://jshint.com/about/
+[stylelint]: https://stylelint.io/
