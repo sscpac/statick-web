@@ -10,6 +10,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 
+- Specifying an encoding when calling open (pylint: W1514).
+
 ### Removed
 
 ## v0.0.6 - 2021-05-28
