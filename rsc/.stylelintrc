@@ -8,4 +8,10 @@
       }
     ],
   },
+  "overrides": [
+    {
+      "files": ["/**/*.html"],
+      "customSyntax": "postcss-html",
+    }
+  ],
 }
