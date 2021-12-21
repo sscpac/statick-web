@@ -84,6 +84,7 @@ jobs:
           sudo npm install -g jshint
           sudo npm install -g markdownlint-cli
           sudo npm install -g prettier
+          sudo npm install -g postcss-html # needed for stylelint to process html
           sudo npm install -g stylelint
           sudo npm install -g stylelint-config-standard
           rm nodesource_setup.sh

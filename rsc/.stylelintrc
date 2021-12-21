@@ -1,6 +1,8 @@
 extends:
   - /usr/local/lib/node_modules/stylelint-config-standard
 
+customSyntax: "postcss-html"
+
 rules:
   declaration-colon-space-after:
     - always
