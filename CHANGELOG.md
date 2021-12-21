@@ -10,9 +10,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 
-- Specifying an encoding when calling open (pylint: [W1514](https://pylint.pycqa.org/en/latest/technical_reference/features.html)).
-
 ### Removed
+
+## v0.0.7 - 2021-12-21
+
+### Added
+
+- Support for python 3.10 (Thomas Denewiler, @tdenewiler, #36, #42).
+- Weekly run of the unit tests.
+
+### Fixed
+
+- Specifying an encoding when calling open (pylint: [W1514](https://pylint.pycqa.org/en/latest/technical_reference/features.html)).
+- Updated stylelint configuration to work with v14 and newer, [migration guide](https://github.com/stylelint/stylelint/blob/14.0.0/docs/migration-guide/to-14.md).
+
+### Changed
+
+- Switch codecov-action from v1 to v2 (Thomas Denewiler, @tdenewiler, #38).
 
 ## v0.0.6 - 2021-05-28
 
