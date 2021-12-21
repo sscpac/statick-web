@@ -4,7 +4,7 @@ name: Publish Python 🐍 distributions 📦 to PyPI and TestPyPI
 on: # NOLINT
   push:
     tags:
-      - "*"
+      - '*'
 
 jobs:
   build-n-publish:
@@ -15,9 +15,9 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Set up Python 3.8
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: '3.8'
 
       - uses: actions/cache@v1
         if: startsWith(runner.os, 'Linux')
