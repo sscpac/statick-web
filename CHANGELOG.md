@@ -6,7 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Unreleased
 
-## Changed
+### Added
+
+### Fixed
+
+## v0.1.1 - 2022-10-11
+
+### Changed
 
 - Updated tool plugins to match new structure introduced in sscpac/statick#423.
 - Update `inherits_from` usage in configuration file to match new list format.
