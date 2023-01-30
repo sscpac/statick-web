@@ -83,8 +83,8 @@ jobs:
           npm install -g markdownlint-cli
           npm install -g prettier
           npm install -g postcss-html # needed for stylelint to process html
-          npm install -g stylelint
-          npm install -g stylelint-config-standard
+          npm install stylelint
+          npm install stylelint-config-standard
 
       - name: Mypy
         run: |
