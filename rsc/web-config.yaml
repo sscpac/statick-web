@@ -56,7 +56,8 @@ levels:
         flags: ""
 
   web_with_pylint:
-    inherits_from: "web"
+    inherits_from:
+      - "web"
     discovery:
       python:
         flags: ""
