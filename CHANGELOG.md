@@ -17,7 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 
-- Ensuring that "Cannot find module" thrown errors from nodejs in markdownlint tool plugin cause statick to error.
+- Ensuring that "Cannot find module" thrown errors from nodejs in markdownlint tool plugin cause statick to error. (#55)
 
 ### Removed
 
