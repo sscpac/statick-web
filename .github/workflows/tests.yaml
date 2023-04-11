@@ -85,7 +85,7 @@ jobs:
           npm install -g stylelint
           npm install -g stylelint-config-standard
           # View versions of installed packages
-          npm list
+          npm list --prefix $HOME/.node_modules
           npm list -g
 
       - name: Mypy
