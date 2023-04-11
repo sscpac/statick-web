@@ -59,6 +59,13 @@ class HTMLLintToolPlugin(ToolPlugin):  # type: ignore
                     )
                     logging.warning("%s exception: %s", self.get_name(), ex.output)
                     return None
+                elif "Error: Cannot find module" in ex.output or "Require stack:" in ex.output:
+                    # nodejs cannot find a module and threw an error
+                    # this results in the same returncode `1` that markdownlint
+                    # uses to indicate the presence of linting issues.
+                    logging.warning("%s failed! Returncode = %d", tool_bin, ex.returncode)
+                    logging.warning("%s exception: %s", self.get_name(), ex.output)
+                    return None
 
                 total_output.append(ex.output)
 

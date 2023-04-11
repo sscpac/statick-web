@@ -15,6 +15,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Update GitHub Actions to use latest versions.
 
+### Fixed
+
+- Ensuring that "Cannot find module" thrown errors from nodejs in markdownlint tool plugin cause statick to error.
+
 ### Removed
 
 - Ubuntu 18.04 removed from continuous integration workflows.
