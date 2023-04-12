@@ -15,6 +15,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 - Update GitHub Actions to use latest versions.
 
+### Fixed
+
+- Using different error types (`comment-no-empty` and `block-no-empty` instead of
+  `declaration-colon-after-space` and `block-opening-brace-space-before`)
+  in stylelint unit tests that will hopefully not be deprecated.
+  This fixes a unit test error in recent versions of `stylelint`. (#56)
+
 ### Removed
 
 - Ubuntu 18.04 removed from continuous integration workflows.
