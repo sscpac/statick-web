@@ -1,12 +1,6 @@
 {
   "extends": ["stylelint-config-standard"],
   "rules": {
-    "declaration-colon-space-after": [
-      "always",
-      {
-        "severity": "warning"
-      }
-    ],
   },
   "overrides": [
     {
