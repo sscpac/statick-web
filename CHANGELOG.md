@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ### Fixed
 
+- Ensuring that "Cannot find module" thrown errors from nodejs in markdownlint tool plugin cause statick to error. (#55)
 - Using different error types (`comment-no-empty` and `block-no-empty` instead of
   `declaration-colon-after-space` and `block-opening-brace-space-before`)
   in stylelint unit tests that will hopefully not be deprecated.
