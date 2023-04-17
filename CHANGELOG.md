@@ -18,10 +18,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 ### Fixed
 
 - Ensuring that "Cannot find module" thrown errors from nodejs in markdownlint tool plugin cause statick to error. (#55)
+- Using different error types (`comment-no-empty` and `block-no-empty` instead of
+  `declaration-colon-after-space` and `block-opening-brace-space-before`)
+  in stylelint unit tests that will hopefully not be deprecated.
+  This fixes a unit test error in Statick tool plugins using recent versions of `stylelint`. (#56)
 
 ### Removed
 
 - Ubuntu 18.04 removed from continuous integration workflows.
+- Removed deprecated pypi package [codecov](https://github.com/codecov/codecov-python) from Tox configuration. (#56)
+  Discussion at: <https://community.codecov.com/t/codecov-yanked-from-pypi-all-versions/4259>.
 
 ## v0.1.1 - 2022-10-11
 
