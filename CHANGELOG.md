@@ -6,10 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Unreleased
 
+## v0.1.2 - 2023-04-24
+
 ### Added
 
 - Ubuntu 22.04 used in continuous integration workflows.
 - Python 3.11 used in continuous integration workflows.
+- Adding code to handle specific nodejs thrown errors where needed. (#55)
 
 ### Changed
 
