@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "statick-web"
+authors = [{name = "NIWC Pacific"}]
+description="Statick analysis plugins for Web (css, html, js) files."
+version = "0.1.3"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "CC0-1.0"}
+classifiers = [
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    "importlib_metadata",
+    "statick",
+]
+
+[tool.setuptools.package-data]
+statick_tool = [
+    "rsc/*",
+    "rsc/.*",
+]
+
+[project.entry-points."statick_tool.plugins.discovery"]
+css = "statick_tool.plugins.discovery.css:CSSDiscoveryPlugin"
+html = "statick_tool.plugins.discovery.html:HTMLDiscoveryPlugin"
+javascript = "statick_tool.plugins.discovery.javascript:JavaScriptDiscoveryPlugin"
+
+[project.entry-points."statick_tool.plugins.tool"]
+eslint = "statick_tool.plugins.tool.eslint:ESLintToolPlugin"
+htmllint = "statick_tool.plugins.tool.htmllint:HTMLLintToolPlugin"
+jshint = "statick_tool.plugins.tool.jshint:JSHintToolPlugin"
+stylelint = "statick_tool.plugins.tool.stylelint:StylelintToolPlugin"
+
+[project.urls]
+"Homepage" = "https://github.com/sscpac/statick-web"
+"Bug Tracker" = "https://github.com/sscpac/statick-web/issues"
+
+[project.optional-dependencies]
+test = [
+    "coverage",
+    "flake8-pep3101",
+    "flake8<5",  # Pin until https://github.com/tholo/pytest-flake8/issues/87 is fixed.
+    "mock",
+    "mypy",
+    "pycodestyle<2.9.0",  # Pin until https://github.com/tholo/pytest-flake8/issues/87 is fixed.
+    "pydocstyle",
+    "pytest",
+    "pytest-cov",
+    "setuptools",
+    "statick",
+    "statick-md",
+    "tox",
+    "tox-gh-actions",
+]
+docs = [
+    "yaml-1.3",
+]
+dist = [
+    "setuptools",
+    "wheel",
+]
