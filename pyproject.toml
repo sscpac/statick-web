@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -52,15 +52,9 @@ stylelint = "statick_tool.plugins.tool.stylelint:StylelintToolPlugin"
 [project.optional-dependencies]
 test = [
     "coverage",
-    "flake8-pep3101",
-    "flake8<5",  # Pin until https://github.com/tholo/pytest-flake8/issues/87 is fixed.
     "mock",
-    "mypy",
-    "pycodestyle<2.9.0",  # Pin until https://github.com/tholo/pytest-flake8/issues/87 is fixed.
-    "pydocstyle",
     "pytest",
     "pytest-cov",
-    "setuptools",
     "statick",
     "statick-md",
     "tox",
@@ -69,7 +63,6 @@ test = [
 docs = [
     "yaml-1.3",
 ]
-dist = [
-    "setuptools",
-    "wheel",
-]
+
+[tool.isort]
+profile = "black"
