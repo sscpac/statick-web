@@ -25,7 +25,7 @@ classifiers = [
 
 dependencies = [
     "importlib_metadata",
-    "statick",
+    "statick@git+https://github.com/tdenewiler/statick@stdlib-plugins",
 ]
 
 [tool.setuptools.package-data]
@@ -55,8 +55,7 @@ test = [
     "mock",
     "pytest",
     "pytest-cov",
-    "statick",
-    "statick-md",
+    "statick-md@git+https://github.com/tdenewiler/statick-md@stdlib-plugins",
     "tox",
     "tox-gh-actions",
 ]
