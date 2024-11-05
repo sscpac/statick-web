@@ -3,5 +3,4 @@ levels:
     tool:
       eslint:
         flags: ""
-        config: ".eslintrc"
-        install_dir: "~/.node_modules"
+        config: "eslint.config.mjs"
