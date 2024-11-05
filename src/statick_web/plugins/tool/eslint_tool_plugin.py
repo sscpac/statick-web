@@ -25,7 +25,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
 
     def get_format_file(self, level: str) -> Tuple[str, bool]:
         """Retrieve format file path."""
-        tool_config = ".eslintrc"
+        tool_config = "eslint.config.mjs"
         user_config = self.plugin_context.config.get_tool_config(
             self.get_name(), level, "config"
         )
@@ -65,7 +65,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         flags: List[str] = []
         if format_file_name is not None:
             flags += ["-c", format_file_name]
-        flags += ["--ext", ".js,.html", "-f", "unix"]
+        flags += ["-f", "unix"]
         flags += user_flags
 
         total_output: List[str] = []
