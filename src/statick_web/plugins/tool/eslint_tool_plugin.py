@@ -65,7 +65,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         flags: List[str] = []
         if format_file_name is not None:
             flags += ["-c", format_file_name]
-        flags += ["-f", "unix"]
+        flags += []
         flags += user_flags
 
         total_output: List[str] = []
