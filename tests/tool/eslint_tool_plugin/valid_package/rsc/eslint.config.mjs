@@ -2,7 +2,8 @@ export default [
     {
         files: ["src/**/*.js"],
         rules: {
-            semi: "error"
+            no-console: "off",
+            camelcase: "warn",
         }
     }
 ];
