@@ -1,27 +1,12 @@
+import html from "eslint-plugin-html"
+
 export default [
   {
-    plugins: {
-        html,
-        prettier,
-    },
-
-    languageOptions: {
-        globals: {
-            ...globals.browser,
-        },
-        ecmaVersion: 9,
-        sourceType: "script",
-
-        parserOptions: {
-            ecmaFeatures: {
-                jsx: false,
-            },
-        },
-    },
-
+    files: ["**/*.html"],
+    plugins: { html },
     rules: {
-        "no-console": "off",
-        camelcase: "warn",
+      "no-console": "off",
+      camelcase: "warn",
     },
-  }
-];
+  },
+]
