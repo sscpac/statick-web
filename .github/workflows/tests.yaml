@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
@@ -85,6 +85,7 @@ jobs:
           npm install -g stylelint
           npm install -g stylelint-config-standard
           # View versions of installed packages
+          npm list
           npm list --prefix $HOME/.node_modules
           npm list -g
 
