@@ -1,15 +1,17 @@
-import html from "eslint-plugin-html"
+import eslintConfigPrettier from "eslint-config-prettier";
+import html from "eslint-plugin-html";
 import js from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier"
+import prettierPlugin from 'eslint-plugin-prettier';
+
 export default [
     js.configs.recommended,
     eslintConfigPrettier,
     {
         files: ["**/*.html"],
-        plugins: { html },
+        plugins: { html, prettier: prettierPlugin },
         rules: {
-            "no-console": "off",
-            "camelcase": "warn",
+            "html/camelcase": "warn",
+            "html/no-console": "off",
         }
     }
 ];
