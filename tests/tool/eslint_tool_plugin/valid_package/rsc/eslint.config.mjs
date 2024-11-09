@@ -7,11 +7,11 @@ export default [
     js.configs.recommended,
     eslintConfigPrettier,
     {
-        files: ["**/*.html"],
+        files: ["**/*.html", "**/*.js"],
         plugins: { html, prettier: prettierPlugin },
         rules: {
-            "html/camelcase": "warn",
-            "html/no-console": "off",
+            "camelcase": "warn",
+            "no-console": "off",
         }
     }
 ];
