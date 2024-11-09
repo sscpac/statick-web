@@ -4,8 +4,8 @@ export default [
         files: ["**/*.html"],
         plugins: { html },
         rules: {
-            no-console: "off",
-            camelcase: "warn",
+            "no-console": "off",
+            "camelcase": "warn",
         }
     }
 ];
