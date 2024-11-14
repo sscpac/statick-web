@@ -71,7 +71,7 @@ jobs:
       - name: Install tools (Linux)
         if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
         run: |
-          npm install -g eslint
+          npm install eslint
           # eslint plugins and configs should be installed locally
           # https://eslint.org/docs/user-guide/migrating-to-6.0.0#plugins-and-shareable-configs-are-no-longer-affected-by-eslints-location
           npm install --save-dev eslint-plugin-html
