@@ -85,7 +85,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
                     or "Require stack:" in ex.output
                 ):
                     # nodejs cannot find a module and threw an error
-                    # this results in the same returncode `1` that markdownlint
+                    # this results in the same returncode `1` that eslint
                     # uses to indicate the presence of linting issues.
                     logging.warning(
                         "%s failed! Returncode = %d", tool_bin, ex.returncode
