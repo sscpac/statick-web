@@ -119,15 +119,17 @@ def test_eslint_tool_plugin_parse_valid():
 def test_eslint_tool_plugin_parse_valid_error():
     """Verify that we can parse the error output of eslint."""
     plugin = setup_eslint_tool_plugin()
-    output = "test.js:1:1: Parsing error: Unexpected token < [Error]"
-    issues = plugin.parse_output([output])
+    output = []
+    output_str = '[{"filePath":"/home/user/test.js","messages":[{"ruleId":"no-unused-vars","severity":2,"message":"\'log_out\' is defined but never used.","line":8,"column":11,"nodeType":"Identifier","messageId":"unusedVar","endLine":8,"endColumn":18,"source":"      var log_out;"}]}]\n'
+    output.append(output_str)
+    issues = plugin.parse_output(output)
     assert len(issues) == 1
-    assert issues[0].filename == "test.js"
-    assert issues[0].line_number == 1
+    assert issues[0].filename == "/home/user/test.js"
+    assert issues[0].line_number == 8
     assert issues[0].tool == "eslint"
-    assert issues[0].issue_type == "Parsing error"
+    assert issues[0].issue_type == "no-unused-vars"
     assert issues[0].severity == 5
-    assert issues[0].message == "Unexpected token <"
+    assert issues[0].message == "'log_out' is defined but never used."
 
 
 def test_eslint_tool_plugin_parse_invalid():
