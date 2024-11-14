@@ -130,26 +130,32 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         """Parse tool output and report issues."""
         issues: List[Issue] = []
         for output in total_output:
-            data = json.loads(output)
-            for line in data:
-                file_path = line["filePath"]
-                for issue in line["messages"]:
-                    severity_str = issue["severity"]
-                    severity = 3
-                    if severity_str == "warning":
+            try:
+                data = json.loads(output)
+                for line in data:
+                    file_path = line["filePath"]
+                    for issue in line["messages"]:
+                        severity_str = issue["severity"]
                         severity = 3
-                    elif severity_str == "error":
-                        severity = 5
-                    issues.append(
-                        Issue(
-                            file_path,
-                            issue["line"],
-                            self.get_name(),
-                            issue["ruleId"],
-                            severity,
-                            issue["message"],
-                            None,
+                        if severity_str == "warning":
+                            severity = 3
+                        elif severity_str == "error":
+                            severity = 5
+                        issues.append(
+                            Issue(
+                                file_path,
+                                issue["line"],
+                                self.get_name(),
+                                issue["ruleId"],
+                                severity,
+                                issue["message"],
+                                None,
+                            )
                         )
-                    )
+
+            except json.JSONDecodeError as ex:
+                logging.warning("JSONDecodeError: %s", ex)
+            except ValueError as ex:
+                logging.warning("ValueError: %s", ex)
 
         return issues
