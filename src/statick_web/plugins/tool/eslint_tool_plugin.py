@@ -137,9 +137,9 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
                     for issue in line["messages"]:
                         severity_str = issue["severity"]
                         severity = 3
-                        if severity_str == "warning":
+                        if severity_str == 1:  # warning
                             severity = 3
-                        elif severity_str == "error":
+                        elif severity_str == 2:  # error
                             severity = 5
                         issues.append(
                             Issue(

@@ -1,4 +1,5 @@
 """Unit tests for the eslint plugin."""
+
 import argparse
 import os
 import subprocess
@@ -103,11 +104,12 @@ def test_eslint_tool_plugin_scan_valid_with_issues():
 def test_eslint_tool_plugin_parse_valid():
     """Verify that we can parse the expected output of eslint."""
     plugin = setup_eslint_tool_plugin()
-    output = "test.js:1:13: Strings must use singlequote. [Error/quotes]"
+    # output = "test.js:1:13: Strings must use singlequote. [Error/quotes]"
+    output = '[{"filePath":"test.js","messages":[{"ruleId":"quotes","severity":2,"message":"Strings must use singlequote.","line":1,"column":13,"nodeType":"Identifier","messageId":"notSingleQuote","endLine":1,"endColumn":18,"source":"      "}]}]'
     issues = plugin.parse_output([output])
     assert len(issues) == 1
     assert issues[0].filename == "test.js"
-    assert issues[0].line_number == "1"
+    assert issues[0].line_number == 1
     assert issues[0].tool == "eslint"
     assert issues[0].issue_type == "quotes"
     assert issues[0].severity == 5
@@ -121,7 +123,7 @@ def test_eslint_tool_plugin_parse_valid_error():
     issues = plugin.parse_output([output])
     assert len(issues) == 1
     assert issues[0].filename == "test.js"
-    assert issues[0].line_number == "1"
+    assert issues[0].line_number == 1
     assert issues[0].tool == "eslint"
     assert issues[0].issue_type == "Parsing error"
     assert issues[0].severity == 5
@@ -166,9 +168,7 @@ def test_eslint_tool_plugin_scan_calledprocesserror(mock_subprocess_check_output
     assert not issues
 
 
-@mock.patch(
-    "statick_tool.plugins.tool.eslint_tool_plugin.subprocess.check_output"
-)
+@mock.patch("statick_tool.plugins.tool.eslint_tool_plugin.subprocess.check_output")
 def test_eslint_tool_plugin_scan_nodejs_error(mock_subprocess_check_output):
     """
     Test what happens when a CalledProcessError is raised when nodejs throws an error.
@@ -176,12 +176,14 @@ def test_eslint_tool_plugin_scan_nodejs_error(mock_subprocess_check_output):
     Expected result: issues is None
     """
     mock_subprocess_check_output.side_effect = subprocess.CalledProcessError(
-        1, "", output="internal/modules/cjs/loader.js:883 \
+        1,
+        "",
+        output="internal/modules/cjs/loader.js:883 \
   throw err; \
   ^ \
 \
 Error: Cannot find module 'node:fs' \
-Require stack:"
+Require stack:",
     )
     plugin = setup_eslint_tool_plugin()
     package = Package(
