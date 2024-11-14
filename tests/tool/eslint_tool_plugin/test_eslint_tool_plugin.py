@@ -96,8 +96,8 @@ def test_eslint_tool_plugin_scan_valid_with_issues():
         os.path.join(os.path.dirname(__file__), "valid_package", "test.js")
     ]
     issues = plugin.scan(package, "level")
-    # We expect to have camelcase warnings and no-unused-var errors.
-    assert len(issues) == 4
+    # We expect to have camelcase, no-unused-var, and no-undef errors.
+    assert len(issues) == 6
 
 
 def test_eslint_tool_plugin_parse_valid():

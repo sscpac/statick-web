@@ -1,5 +1,6 @@
 """Apply eslint tool and gather results."""
 
+import json
 import logging
 import pathlib
 import re
@@ -62,7 +63,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
 
         (format_file_name, copied_file) = self.get_format_file(level)
 
-        flags: List[str] = []
+        flags: List[str] = ["-f", "json"]
         if format_file_name is not None:
             flags += ["-c", format_file_name]
         flags += []
@@ -127,51 +128,28 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         self, total_output: List[str], package: Optional[Package] = None
     ) -> List[Issue]:
         """Parse tool output and report issues."""
-        eslint_re = r"(.+):(\d+):(\d+):\s(.+)\s\[(.+)\/(.+)\]"
-        eslint_error_re = r"(.+):(\d+):(\d+):\s(.+):\s(.+)\s\[(.+)]"
-        parse: Pattern[str] = re.compile(eslint_re)
-        err_parse: Pattern[str] = re.compile(eslint_error_re)
         issues: List[Issue] = []
-
         for output in total_output:
-            lines = output.split("\n")
-            for line in lines:
-                match: Optional[Match[str]] = parse.match(line)
-                err_match: Optional[Match[str]] = err_parse.match(line)
-                if match:
-                    severity_str = match.group(5).lower()
+            data = json.loads(output)
+            for line in data:
+                file_path = line["filePath"]
+                for issue in line["messages"]:
+                    severity_str = issue["severity"]
                     severity = 3
                     if severity_str == "warning":
                         severity = 3
                     elif severity_str == "error":
                         severity = 5
-
                     issues.append(
                         Issue(
-                            match.group(1),
-                            match.group(2),
+                            file_path,
+                            issue["line"],
                             self.get_name(),
-                            match.group(6),
+                            issue["ruleId"],
                             severity,
-                            match.group(4),
+                            issue["message"],
                             None,
                         )
                     )
-                elif err_match:
-                    severity_str = err_match.group(6).lower()
-                    severity = 3
-                    if severity_str == "error":
-                        severity = 5
 
-                    issues.append(
-                        Issue(
-                            err_match.group(1),
-                            err_match.group(2),
-                            self.get_name(),
-                            err_match.group(4),
-                            severity,
-                            err_match.group(5),
-                            None,
-                        )
-                    )
         return issues
