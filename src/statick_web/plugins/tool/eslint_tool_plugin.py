@@ -129,6 +129,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
     ) -> List[Issue]:
         """Parse tool output and report issues."""
         issues: List[Issue] = []
+        print(total_output)
         for output in total_output:
             try:
                 data = json.loads(output)
