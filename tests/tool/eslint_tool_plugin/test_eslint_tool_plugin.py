@@ -120,16 +120,16 @@ def test_eslint_tool_plugin_parse_valid_error():
     """Verify that we can parse the error output of eslint."""
     plugin = setup_eslint_tool_plugin()
     output = []
-    output_str = '[{"filePath":"/home/user/test.js","messages":[{"ruleId":"no-unused-vars","severity":2,"message":"\'log_out\' is defined but never used.","line":8,"column":11,"nodeType":"Identifier","messageId":"unusedVar","endLine":8,"endColumn":18,"source":"      var log_out;"}]}]\n'
+    output_str = """[{"filePath":"test.html","messages":[{"ruleId":null,"nodeType":null,"fatal":true,"severity":2,"message":"Parsing error: Unexpected token <","line":1,"column":1}],"suppressedMessages":[],"errorCount":1,"fatalErrorCount":1,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0,"source":"<!DOCTYPE html>\\n<!-- Minimal working example based on: https://www.sitepoint.com/a-minimal-html-document-html5-edition/ -->\\n<html lang=\\"en\\">\\n  <head>\\n    <meta charset=\\"utf-8\\">\\n    <title>Hello World!</title>\\n    <script>\\n      var log_out;\\n      console.log('Hello World!');\\n    </script>\\n  </head>\\n  <body>\\n    <!-- page content -->\\n  </body>\\n</html>\\n","usedDeprecatedRules":[]}]"""
     output.append(output_str)
     issues = plugin.parse_output(output)
     assert len(issues) == 1
-    assert issues[0].filename == "/home/user/test.js"
-    assert issues[0].line_number == 8
+    assert issues[0].filename == "test.html"
+    assert issues[0].line_number == 1
     assert issues[0].tool == "eslint"
-    assert issues[0].issue_type == "no-unused-vars"
+    assert issues[0].issue_type == None
     assert issues[0].severity == 5
-    assert issues[0].message == "'log_out' is defined but never used."
+    assert issues[0].message == "Parsing error: Unexpected token <"
 
 
 def test_eslint_tool_plugin_parse_invalid():
