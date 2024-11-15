@@ -142,10 +142,13 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
                             severity = 3
                         elif severity_str == 2:  # error
                             severity = 5
+                        line_num = None
+                        if "line" in issue:
+                            line_num = issue["line"]
                         issues.append(
                             Issue(
                                 file_path,
-                                issue["line"],
+                                line_num,
                                 self.get_name(),
                                 issue["ruleId"],
                                 severity,
