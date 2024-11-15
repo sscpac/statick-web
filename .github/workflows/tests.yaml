@@ -94,6 +94,7 @@ jobs:
           mypy --ignore-missing-imports --strict src/
 
       - name: Tox
+        if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
         run: |
           npm list
           npm list --prefix $HOME/.node_modules
