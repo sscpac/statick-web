@@ -45,6 +45,9 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
                     self.plugin_context.resources.get_file(tool_config)
                 )
                 install_dir_path = pathlib.Path(install_dir).expanduser()
+                print(
+                    f"Copying eslint format file {config_file_path} to: {install_dir_path}"
+                )
                 logging.info(
                     f"Copying eslint format file {config_file_path} to: {install_dir_path}"
                 )
@@ -125,6 +128,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         """Remove config file automatically copied into directory."""
         format_file_path = pathlib.Path(format_file_name).expanduser()
         if format_file_path.exists():
+            print(f"Removing copied config file: {format_file_path}")
             logging.info(f"Removing copied config file: {format_file_path}")
             format_file_path.unlink()
 
