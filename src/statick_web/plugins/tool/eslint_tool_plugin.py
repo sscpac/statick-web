@@ -80,6 +80,7 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         for src in files:
             try:
                 exe = [tool_bin] + flags + [src]
+                print(exe)
                 output = subprocess.check_output(
                     exe, stderr=subprocess.STDOUT, universal_newlines=True
                 )
