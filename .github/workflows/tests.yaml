@@ -77,6 +77,7 @@ jobs:
           npm install --prefix $HOME/.node_modules --save-dev eslint-plugin-html
           npm install --prefix $HOME/.node_modules --save-dev eslint-plugin-prettier
           npm install --prefix $HOME/.node_modules --save-dev eslint-config-prettier
+          npm install --prefix $HOME/.node_modules --save-dev eslint @eslint/js
           npm install -g htmllint-cli
           npm install -g jshint
           npm install -g markdownlint-cli
