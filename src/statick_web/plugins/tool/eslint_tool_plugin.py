@@ -78,7 +78,6 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
         for src in files:
             try:
                 exe = [tool_bin] + flags + [src]
-                print(exe)
                 output = subprocess.check_output(
                     exe, stderr=subprocess.STDOUT, universal_newlines=True
                 )
@@ -135,7 +134,6 @@ class ESLintToolPlugin(ToolPlugin):  # type: ignore
     ) -> List[Issue]:
         """Parse tool output and report issues."""
         issues: List[Issue] = []
-        print(total_output)
         for output in total_output:
             try:
                 data = json.loads(output)
