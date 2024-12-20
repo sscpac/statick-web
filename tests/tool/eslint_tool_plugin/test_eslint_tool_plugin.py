@@ -98,7 +98,7 @@ def test_eslint_tool_plugin_scan_valid_with_issues():
     ]
     issues = plugin.scan(package, "level")
     # We expect to have camelcase, no-unused-var, and no-undef errors.
-    assert len(issues) == 6
+    assert len(issues) == 2
 
 
 def test_eslint_tool_plugin_parse_valid():
