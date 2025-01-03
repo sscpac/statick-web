@@ -32,9 +32,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install .
-          pip install .[test]
-          pip install .[docs]
+          pip install .[docs,test]
 
       # Have to install newer version from non-apt source due to SSL library compatibility issues.
       - name: Install tools (Linux)
