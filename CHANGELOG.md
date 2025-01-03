@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ## Unreleased
 
+## v0.2.0 - 2025-01-03
+
+### Changed
+
+- ESLint tool plugin updates.
+  - Using new ESLint configuration file format.
+    - <https://eslint.org/docs/latest/use/configure/configuration-files>
+  - Request JSON output format from tool and update parsing results accordingly.
+
+### Removed
+
+- Removed Python 3.7 support.
+- Removed flake8 when running unit tests.
+
 ## v0.1.3 - 2023-04-24
 
 ### Changed
