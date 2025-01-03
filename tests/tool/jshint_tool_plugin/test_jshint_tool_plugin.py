@@ -1,17 +1,19 @@
 """Unit tests for the jshint plugin."""
+
 import argparse
-import mock
 import os
-import pytest
 import subprocess
 import sys
 
-import statick_tool
+import mock
+import pytest
 from statick_tool.config import Config
 from statick_tool.package import Package
 from statick_tool.plugin_context import PluginContext
-from statick_tool.plugins.tool.jshint import JSHintToolPlugin
 from statick_tool.resources import Resources
+
+import statick_tool
+from statick_tool.plugins.tool.jshint import JSHintToolPlugin
 
 if sys.version_info < (3, 10):
     from importlib_metadata import entry_points

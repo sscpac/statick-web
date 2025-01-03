@@ -1,17 +1,19 @@
 """Unit tests for the htmllint plugin."""
+
 import argparse
-import mock
 import os
-import pytest
 import subprocess
 import sys
 
-import statick_tool
+import mock
+import pytest
 from statick_tool.config import Config
 from statick_tool.package import Package
 from statick_tool.plugin_context import PluginContext
-from statick_tool.plugins.tool.htmllint import HTMLLintToolPlugin
 from statick_tool.resources import Resources
+
+import statick_tool
+from statick_tool.plugins.tool.htmllint import HTMLLintToolPlugin
 
 if sys.version_info < (3, 10):
     from importlib_metadata import entry_points
@@ -135,9 +137,7 @@ def test_htmllint_tool_plugin_scan_calledprocesserror(mock_subprocess_check_outp
     assert not issues
 
 
-@mock.patch(
-    "statick_tool.plugins.tool.htmllint.subprocess.check_output"
-)
+@mock.patch("statick_tool.plugins.tool.htmllint.subprocess.check_output")
 def test_htmllint_tool_plugin_scan_nodejs_error(mock_subprocess_check_output):
     """
     Test what happens when a CalledProcessError is raised when nodejs throws an error.
@@ -145,7 +145,9 @@ def test_htmllint_tool_plugin_scan_nodejs_error(mock_subprocess_check_output):
     Expected result: issues is None
     """
     mock_subprocess_check_output.side_effect = subprocess.CalledProcessError(
-        1, "", output="internal/modules/cjs/loader.js:883 \
+        1,
+        "",
+        output="internal/modules/cjs/loader.js:883 \
   throw err; \
   ^ \
 \

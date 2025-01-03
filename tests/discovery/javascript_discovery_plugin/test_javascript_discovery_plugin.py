@@ -1,9 +1,11 @@
 """Unit tests for the JavaScript discovery plugin."""
+
 import os
 import sys
 
 from statick_tool.exceptions import Exceptions
 from statick_tool.package import Package
+
 from statick_tool.plugins.discovery.javascript import JavaScriptDiscoveryPlugin
 
 if sys.version_info < (3, 10):
@@ -20,7 +22,8 @@ def test_javascript_plugin_found():
         plugin = plugin_type.load()
         discovery_plugins[plugin_type.name] = plugin()
     assert any(
-        plugin.get_name() == "javascript" for _, plugin in list(discovery_plugins.items())
+        plugin.get_name() == "javascript"
+        for _, plugin in list(discovery_plugins.items())
     )
 
 
