@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
@@ -74,9 +74,10 @@ jobs:
           npm install -g eslint
           # eslint plugins and configs should be installed locally
           # https://eslint.org/docs/user-guide/migrating-to-6.0.0#plugins-and-shareable-configs-are-no-longer-affected-by-eslints-location
-          npm install --prefix $HOME/.node_modules eslint-plugin-html
-          npm install --prefix $HOME/.node_modules eslint-plugin-prettier
-          npm install --prefix $HOME/.node_modules eslint-config-prettier
+          npm install --prefix $HOME/.node_modules --save-dev eslint-plugin-html
+          npm install --prefix $HOME/.node_modules --save-dev eslint-plugin-prettier
+          npm install --prefix $HOME/.node_modules --save-dev eslint-config-prettier
+          npm install --prefix $HOME/.node_modules --save-dev eslint @eslint/js
           npm install -g htmllint-cli
           npm install -g jshint
           npm install -g markdownlint-cli
@@ -85,6 +86,7 @@ jobs:
           npm install -g stylelint
           npm install -g stylelint-config-standard
           # View versions of installed packages
+          npm list
           npm list --prefix $HOME/.node_modules
           npm list -g
 
@@ -93,7 +95,11 @@ jobs:
           mypy --ignore-missing-imports --strict src/
 
       - name: Tox
+        if: matrix.os == 'ubuntu-20.04' || matrix.os == 'ubuntu-22.04'
         run: |
+          npm list
+          npm list --prefix $HOME/.node_modules
+          npm list -g
           python -m tox
 
       - name: Upload coverage to Codecov

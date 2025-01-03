@@ -1,6 +1,5 @@
 """Setup."""
 
-
 from setuptools import setup
 
 with open("README.md", encoding="utf8") as fid:
