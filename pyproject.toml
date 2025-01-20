@@ -25,7 +25,7 @@ classifiers = [
 
 dependencies = [
     "importlib_metadata",
-    "statick@git+https://github.com/tdenewiler/statick@stdlib-plugins",
+    "statick",
 ]
 
 [tool.setuptools.package-data]
