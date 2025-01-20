@@ -55,7 +55,7 @@ test = [
     "mock",
     "pytest",
     "pytest-cov",
-    "statick-md@git+https://github.com/tdenewiler/statick-md@stdlib-plugins",
+    "statick-md",
     "tox",
     "tox-gh-actions",
 ]
