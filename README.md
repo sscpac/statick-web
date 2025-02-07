@@ -17,14 +17,25 @@ Custom exceptions can be applied the same way they are with [Statick exceptions]
 
 ## Table of Contents
 
-* [Installation](#installation)
-* [Usage](#usage)
-* [Existing Plugins](#existing-plugins)
-  * [Discovery Plugins](#discovery-plugins)
-  * [Tool Plugins](#tool-plugins)
-* [Contributing](#contributing)
-  * [Mypy](#mypy)
-  * [Formatting](#formatting)
+- [Statick Web Plugins](#statick-web-plugins)
+  - [Table of Contents](#table-of-contents)
+  - [Deprecated](#deprecated)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Pip Install](#pip-install)
+    - [Pip Install and Custom Configuration](#pip-install-and-custom-configuration)
+    - [Source Install and Custom Configuration](#source-install-and-custom-configuration)
+  - [Existing Plugins](#existing-plugins)
+    - [Discovery Plugins](#discovery-plugins)
+    - [Tool Plugins](#tool-plugins)
+  - [Contributing](#contributing)
+    - [Mypy](#mypy)
+    - [Formatting](#formatting)
+
+## Deprecated
+
+This set of plugins was merged into the main [Statick] repository and Python package.
+All future development will happen in that repository.
 
 ## Installation
 
